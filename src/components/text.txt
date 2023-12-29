@@ -1,0 +1,360 @@
+--dark-bg: #2f263c;
+--text-white: #f4e0f1;
+--text-black: #222;
+--white-bg: #fff;
+--text-rose: #ff6b81;
+--text-yellow: #ffe494;
+--box-bg: #281e36;
+--yellow-color: #fcba28;
+
+
+
+
+
+
+
+import React, { useState } from "react";
+import {Link} from "react-scroll";
+
+
+const Navbar = () => {
+
+    const [nav, setNav] = useState(false);
+
+  const links = [
+    {
+      id: 1,
+      link: "home",
+    },
+    {
+      id: 2,
+      link: "about",
+    },
+    {
+      id: 3,
+      link: "portfolio",
+    },
+    {
+      id: 4,
+      link: "experience",
+    },
+    {
+      id: 5,
+      link: "contact",
+    },
+  ];
+
+  return (
+    <div className="flex justify-between items-center w-full h-20 text-white bg-[#222] px-4">
+      <h1 className="text-3xl font-headingfont ml-2 text-[#fcba28]">sudharsan</h1>
+
+      <ul className="hidden md:flex">
+        {links.map(({ id, link }) => (
+          <li
+            key={id}
+            className="px-4 cursor-pointer capitalize font-medium text-[#fff] hover:scale-105 duration-200"
+          >
+            <Link to={link} smooth duration={500}>
+              {link}
+            </Link>
+          </li>
+        ))}
+      </ul>
+
+      <div onClick={() => setNav(!nav)}
+      className="cursor-pointer pr-4 z-10 text-[#fcba28] md:hidden">
+        {nav ? <span class="material-icons-outlined text-4xl ">close</span> : <span class="material-icons-outlined text-4xl ">menu_open</span>}
+      </div>
+
+      {nav && (
+        <ul className="flex flex-col justify-center items-center absolute top-0 left-0 w-full h-screen bg-gradient-to-b from-black to-gray-800 text-gray-500">
+        {links.map(({ id, link }) => (
+            <li
+              key={id}
+              className="px-4 cursor-pointer capitalize py-6 text-4xl"
+            >
+              <Link onClick={() => setNav(!nav)} to={link} smooth duration={500}>
+              {link}
+            </Link>
+            </li>
+          ))}
+        </ul>
+      )}
+
+    </div>
+  );
+}
+
+export default Navbar;
+
+
+
+
+------------------------------------------------
+as a going to
+
+
+import React from "react";
+import { Link } from "react-scroll";
+import { FaHome,FaExclamationCircle } from "react-icons/fa";
+import { IoBookSharp } from "react-icons/io5";
+import { GiSkills } from "react-icons/gi";
+import { MdContacts } from "react-icons/md";
+
+function Sociallinks() {
+
+  const links = [
+    {
+      id: 1,
+      link: "home",
+      child:(
+        <><FaHome size={30}/></>
+      ),
+      style: "rounded-tr-md"
+    },
+    {
+      id: 2,
+      child:(
+        <><FaExclamationCircle size={30}/></>
+      ),
+      link: "about",
+    },
+    {
+      id: 3,
+      child:(
+        <><IoBookSharp size={30}/></>
+      ),
+      link: "portfolio",
+    },
+    {
+      id: 4,
+      child:(
+        <><GiSkills size={30}/></>
+      ),
+      link: "skills",
+    },
+    {
+      id: 5,
+      child:(
+        <><MdContacts size={30}/></>
+      ),
+      link: "contact",
+      style: "rounded-br-md"
+    },
+  ];
+  
+
+  return (
+    <div className="hidden lg:flex flex-col top-[35%] left-0 fixed ">
+      <ul>
+        {links.map(({id, link,style,child}) => (
+          <li
+            key={id}
+            className={
+              "flex justify-between items-center w-40 h-14 px-4 text-white bg-transparent ml-[-100px] hover:rounded-md hover:ml-[-10px] duration-300" +
+              " " +
+              style
+            }
+          >
+            <Link to={link} smooth duration={500}
+              className="flex justify-between items-center w-full">
+                {link} {child}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default Sociallinks;
+
+
+
+/*
+ return (
+    <div className="flex justify-between items-center w-full h-20 text-white bg-[#222] px-4">
+      <h1 className="text-3xl font-headingfont ml-2 text-[#fcba28]">sudharsan</h1>
+
+      <ul className="hidden md:flex">
+        {links.map(({ id, link }) => (
+          <li
+            key={id}
+            className="px-4 cursor-pointer capitalize font-medium text-[#fff] hover:scale-105 duration-200"
+          >
+            <Link to={link} smooth duration={500}>
+              {link}
+            </Link>
+          </li>
+        ))}
+      </ul>
+
+      <div onClick={() => setNav(!nav)}
+      className="cursor-pointer pr-4 z-10 text-[#fcba28] md:hidden">
+        {nav ? <span class="material-icons-outlined text-4xl ">close</span> : <span class="material-icons-outlined text-4xl ">menu_open</span>}
+      </div>
+
+      {nav && (
+        <ul className="flex flex-col justify-center items-center absolute top-0 left-0 w-full h-screen bg-gradient-to-b from-black to-gray-800 text-gray-500">
+        {links.map(({ id, link }) => (
+            <li
+              key={id}
+              className="px-4 cursor-pointer capitalize py-6 text-4xl"
+            >
+              <Link onClick={() => setNav(!nav)} to={link} smooth duration={500}>
+              {link}
+            </Link>
+            </li>
+          ))}
+        </ul>
+      )}
+
+    </div>
+  );
+
+*/
+
+
+----------------------------------------------------------
+flip animation
+
+<div className="flip-card">
+          <div className="flip-card-inner">
+            <div className="flip-card-front">
+              <img src={profile_img} alt="Avatar" className="rounded-full h-28 w-28 border-2 border-lime-400"/>
+            </div>
+            <div className="flip-card-back flex justify-center items-center">
+              <h1 className="font-bold">Quantum</h1>
+            </div>
+          </div>
+        </div>
+
+
+        .flip-card {
+    background-color: transparent;
+    width: 7rem;
+    height: 7rem;
+    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+  }
+  
+  /* This container is needed to position the front and back side */
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+  
+  /* Do an horizontal flip when you move the mouse over the flip box container */
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+  
+  /* Position the front and back side */
+  .flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 7rem;
+    height: 7rem;
+    border-radius: 100px;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+  }
+  
+  /* Style the front side (fallback if image is missing) */
+  .flip-card-front {
+    background-color: #bbb;
+    color: black;
+  }
+  
+  /* Style the back side */
+  .flip-card-back {
+    background-color: rgb(15 23 42 / var(--tw-bg-opacity));
+    color: #ff6b81;
+    transform: rotateY(180deg);
+  }
+  -------------------------------------------------------------------------------------------
+
+  import React from "react";
+import css from "./images/css.png";
+
+function Experience() {
+  const exp = [
+    { id: 1, src: css, title: "HTML", style: "shadow-orange-500" },
+    { id: 2, src: css, title: "CSS", style: "shadow-blue-500" },
+    { id: 3, src: css, title: "JAVASCRIPT", style: "shadow-yellow-500" },
+    { id: 4, src: css, title: "REACT", style: "shadow-blue-600" },
+    { id: 5, src: css, title: "TAILWIND", style: "shadow-sky-400" },
+    { id: 6, src: css, title: "NEXTJS", style: "shadow-white" },
+    { id: 7, src: css, title: "SQL", style: "shadow-pink-400" },
+    { id: 8, src: css, title: "GITHUB", style: "shadow-gray-400" },
+  ];
+
+  return (
+    <div name="skills" className="bg-[#2f263c] w-full h-fit pt-28">
+      <div className="max-w-screen-lg mx-auto p-4 flex flex-col justify-center w-full h-full text-white">
+        <div>
+          <p className="text-4xl font-headingfont tracking-widest text-[#ff6b81] inline border-b-4 border-white">
+            Skills
+          </p>
+         
+        </div>
+
+        <div className="w-full grid grid-cols-2 sm:grid-cols-3 gap-8 text-center py-8 px-12 sm:px-0 mt-16">
+          {exp.map(({ id, src, title, style }) => (
+            <div key={id} className={`shadow-md hover:scale-105 duration-500 py-2 rounded-lg ${style}`}>
+              <img src={src} alt="" className="w-20 mx-auto" />
+              <p className="mt-4">{title}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Experience;
+------------------------------------------------------------------------------------------------
+import React from "react";
+
+function Contact() {
+  return (
+    <div name="contact" className="w-full h-fit p-4 bg-[#2f263c] text-white pt-28">
+      <div className="flex flex-col p-4 justify-center max-w-screen-lg mx-auto h-full">
+        <div className="pb-8">
+          <p className="text-4xl font-headingfont tracking-widest text-[#ff6b81] inline border-b-4 border-white">Contact</p>
+        </div>
+
+        <div className="flex justify-center items-center mt-28">
+          <form action="https://getform.io/f/42657f30-09cb-4fc7-9a04-f62b9d3e3a4a" 
+          method="POST"
+          className="flex flex-col w-full md:w1/2
+          ">
+            <input
+              type="text"
+              name="name"
+              placeholder="Enter Your Name"
+              className="p-2 bg-transparent border-2 rounded-md text-white focus:outline-none"
+            />
+
+            <input
+              type="text"
+              name="email"
+              placeholder="Enter Your Email"
+              className="my-4 p-2 bg-transparent border-2 rounded-md text-white focus:outline-none"
+            />
+
+            <textarea name="message" rows="10"
+            placeholder="Enter your Message"
+            className="p-2 bg-transparent border-2 rounded-md text-white focus:outline-none"></textarea>
+
+            <button className="text-white bg-black px-6 py-3 my-8 mx-auto flex items-center rounded-md hover:scale-110 duration-300">Lets talk</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Contact;
